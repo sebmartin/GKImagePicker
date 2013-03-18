@@ -18,6 +18,7 @@
 @property (nonatomic, strong) UIButton *normalCropButton;
 @property (nonatomic, strong) UIImageView *imgView;
 @property (nonatomic, strong) UIButton* resizableButton;
+@property (nonatomic, strong) UIButton* cameraButton;
 @end
 
 @implementation ViewController
@@ -26,7 +27,7 @@
 @synthesize imgView;
 @synthesize popoverController;
 @synthesize ctr;
-@synthesize customCropButton, normalCropButton, resizableButton;
+@synthesize customCropButton, normalCropButton, resizableButton, cameraButton;
 
 - (void)showPicker:(UIButton *)btn{
     
@@ -83,26 +84,44 @@
     }
 }
 
+-(void)showCameraPicker:(UIButton*)btn{
+    self.imagePicker = [[GKImagePicker alloc] init];
+    self.imagePicker.cropSize = CGSizeMake(296, 300);
+    self.imagePicker.delegate = self;
+	self.imagePicker.resizeableCropArea = YES;
+    self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    
+    [self presentModalViewController:self.imagePicker.imagePickerController animated:YES];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	
     self.customCropButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    CGFloat buttonWidth = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 220 : 280;
+    CGFloat buttonWidth = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 160 : 280;
     self.customCropButton.frame = CGRectMake(20, 20, buttonWidth, 44);
     [self.customCropButton setTitle:@"Custom Crop" forState:UIControlStateNormal];
     [self.customCropButton addTarget:self action:@selector(showPicker:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.customCropButton];
     
     self.normalCropButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [self.normalCropButton setTitle:@"Apple's Build In Crop" forState:UIControlStateNormal];
+    [self.normalCropButton setTitle:@"Standard iOS Crop" forState:UIControlStateNormal];
     [self.normalCropButton addTarget:self action:@selector(showNormalPicker:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.normalCropButton];
     
     self.resizableButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [self.resizableButton setTitle:@"Resizeable Custom Crop" forState:UIControlStateNormal];
+    [self.resizableButton setTitle:@"Resizeable Crop" forState:UIControlStateNormal];
     [self.resizableButton addTarget:self action:@selector(showResizablePicker:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.resizableButton];
+    
+    self.cameraButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [self.cameraButton setTitle:@"Camera Crop" forState:UIControlStateNormal];
+    [self.cameraButton addTarget:self action:@selector(showCameraPicker:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.cameraButton];
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] == NO) {
+        self.cameraButton.enabled = NO;
+    }
     
     self.imgView = [[UIImageView alloc] initWithFrame:CGRectZero];
     self.imgView.contentMode = UIViewContentModeScaleAspectFit;
@@ -134,12 +153,16 @@
     [super viewWillLayoutSubviews];
     
     self.normalCropButton.frame = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 
-                                   CGRectMake(260, 20, 220, 44) :
+                                   CGRectMake(210, 20, 160, 44) :
                                    CGRectMake(20, CGRectGetMaxY(self.customCropButton.frame) + 20, 280, 44));
     
     self.resizableButton.frame = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ?
-                                   CGRectMake(500, 20, 220, 44) :
+                                   CGRectMake(400, 20, 160, 44) :
                                    CGRectMake(20, CGRectGetMaxY(self.normalCropButton.frame) + 20, 280, 44));
+    
+    self.cameraButton.frame = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ?
+                                  CGRectMake(590, 20, 160, 44) :
+                                  CGRectMake(20, CGRectGetMaxY(self.normalCropButton.frame) + 20, 280, 44));
     
     self.imgView.frame = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 
                           CGRectMake(20, 84, CGRectGetWidth(self.view.bounds) - 40, CGRectGetHeight(self.view.bounds) - 104) : 

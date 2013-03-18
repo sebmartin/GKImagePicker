@@ -22,6 +22,21 @@
 @synthesize cropSize, delegate, resizeableCropArea;
 @synthesize imagePickerController = _imagePickerController;
 
+-(UIImagePickerControllerSourceType)useCameraAsSource {
+    return _imagePickerController.sourceType;
+}
+
+-(void)setUseCameraAsSource:(UIImagePickerControllerSourceType)sourceDevice {
+    if (sourceDevice == UIImagePickerControllerSourceTypeCamera &&
+        [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] == YES)
+    {
+        _imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+        _imagePickerController.showsCameraControls = NO;
+    }
+    else {
+        _imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+}
 
 #pragma mark -
 #pragma mark Init Methods
