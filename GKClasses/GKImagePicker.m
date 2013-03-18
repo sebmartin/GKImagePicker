@@ -8,6 +8,7 @@
 
 #import "GKImagePicker.h"
 #import "GKImageCropViewController.h"
+#import "GKCameraOverlayView.h"
 
 @interface GKImagePicker ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate, GKImageCropControllerDelegate>
 @property (nonatomic, strong, readwrite) UIImagePickerController *imagePickerController;
@@ -22,16 +23,17 @@
 @synthesize cropSize, delegate, resizeableCropArea;
 @synthesize imagePickerController = _imagePickerController;
 
--(UIImagePickerControllerSourceType)useCameraAsSource {
+-(UIImagePickerControllerSourceType)sourceType {
     return _imagePickerController.sourceType;
 }
 
--(void)setUseCameraAsSource:(UIImagePickerControllerSourceType)sourceDevice {
-    if (sourceDevice == UIImagePickerControllerSourceTypeCamera &&
+-(void)setSourceType:(UIImagePickerControllerSourceType)sourceType {
+    if (sourceType == UIImagePickerControllerSourceTypeCamera &&
         [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] == YES)
     {
         _imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
         _imagePickerController.showsCameraControls = NO;
+        _imagePickerController.cameraOverlayView = [[GKCameraOverlayView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     }
     else {
         _imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
