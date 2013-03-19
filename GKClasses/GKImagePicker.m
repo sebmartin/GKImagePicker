@@ -33,7 +33,12 @@
     {
         _imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
         _imagePickerController.showsCameraControls = NO;
-        _imagePickerController.cameraOverlayView = [[GKCameraOverlayView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        
+        // Configure camera overlay view
+        GKCameraOverlayView *view = [[GKCameraOverlayView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        [view.shutterButton addTarget:self action:@selector(onCameraShutter:) forControlEvents:UIControlEventTouchUpInside];
+        [view.toggleCameraButton addTarget:self action:@selector(toggleCameraDevice:) forControlEvents:UIControlEventTouchUpInside];
+        _imagePickerController.cameraOverlayView = view;
     }
     else {
         _imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -106,5 +111,25 @@
         [self.delegate imagePicker:self pickedImage:croppedImage];   
     }
 }
+
+#pragma mark -
+#pragma Camera actions
+
+-(IBAction)onCameraShutter:(id)sender {
+    if (self.sourceType == UIImagePickerControllerSourceTypeCamera) {
+        [_imagePickerController takePicture];
+    }
+}
+
+-(IBAction)toggleCameraDevice:(id)sender {
+    if (_imagePickerController.cameraDevice == UIImagePickerControllerCameraDeviceRear) {
+        _imagePickerController.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+    }
+    else {
+        _imagePickerController.cameraDevice = UIImagePickerControllerCameraDeviceRear;
+    }
+}
+
+-image
 
 @end

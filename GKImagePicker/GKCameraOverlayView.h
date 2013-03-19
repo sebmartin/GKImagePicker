@@ -10,4 +10,7 @@
 
 @interface GKCameraOverlayView : UIView
 
+@property (strong, nonatomic) UIButton *shutterButton;
+@property (strong, nonatomic) UIButton *toggleCameraButton;
+
 @end

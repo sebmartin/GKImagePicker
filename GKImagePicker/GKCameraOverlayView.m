@@ -10,6 +10,8 @@
 
 @implementation GKCameraOverlayView
 
+@synthesize shutterButton, toggleCameraButton;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -25,10 +27,10 @@
         CGRect buttonFrame;
         buttonFrame.size = CGSizeMake(64, 64);
         buttonFrame.origin = CGPointMake(frame.size.width - 80, frame.size.height / 2 - 32);
-        UIButton *button = [[UIButton alloc] initWithFrame:buttonFrame];
-        [button setImage:[UIImage imageNamed:@"PLCameraShutterButton"] forState:UIControlStateNormal];
-        [button setImage:[UIImage imageNamed:@"PLCameraShutterButtonPressed"] forState:UIControlStateHighlighted];
-        [self addSubview:button];
+        self.shutterButton = [[UIButton alloc] initWithFrame:buttonFrame];
+        [self.shutterButton setImage:[UIImage imageNamed:@"PLCameraShutterButton"] forState:UIControlStateNormal];
+        [self.shutterButton setImage:[UIImage imageNamed:@"PLCameraShutterButtonPressed"] forState:UIControlStateHighlighted];
+        [self addSubview:self.shutterButton];
     }
     return self;
 }
