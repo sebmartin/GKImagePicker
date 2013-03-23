@@ -37,7 +37,10 @@
         // Configure camera overlay view
         GKCameraOverlayView *view = [[GKCameraOverlayView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         [view.shutterButton addTarget:self action:@selector(onCameraShutter:) forControlEvents:UIControlEventTouchUpInside];
-        [view.toggleCameraButton addTarget:self action:@selector(toggleCameraDevice:) forControlEvents:UIControlEventTouchUpInside];
+        view.cancelButton.target = self;
+        view.cancelButton.action = @selector(onCancelCamera:);
+        view.toggleCameraButton.target = self;
+        view.toggleCameraButton.action = @selector(toggleCameraDevice:);
         _imagePickerController.cameraOverlayView = view;
     }
     else {
@@ -92,6 +95,8 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
 
+    // TODO: dismiss the camera controller?
+    
     GKImageCropViewController *cropController = [[GKImageCropViewController alloc] init];
     cropController.contentSizeForViewInPopover = picker.contentSizeForViewInPopover;
     cropController.sourceImage = [info objectForKey:UIImagePickerControllerOriginalImage];
@@ -121,6 +126,10 @@
     }
 }
 
+-(IBAction)onCancelCamera:(id)sender {
+    
+}
+
 -(IBAction)toggleCameraDevice:(id)sender {
     if (_imagePickerController.cameraDevice == UIImagePickerControllerCameraDeviceRear) {
         _imagePickerController.cameraDevice = UIImagePickerControllerCameraDeviceFront;
@@ -129,7 +138,5 @@
         _imagePickerController.cameraDevice = UIImagePickerControllerCameraDeviceRear;
     }
 }
-
--image
 
 @end

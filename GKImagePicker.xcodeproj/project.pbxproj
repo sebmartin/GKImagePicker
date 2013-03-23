@@ -11,7 +11,7 @@
 		963FD75A16F6BA10002032FF /* PLCameraShutterButtonPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 963FD75816F6BA10002032FF /* PLCameraShutterButtonPressed@2x.png */; };
 		963FD75D16F6BB1B002032FF /* PLCameraShutterButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 963FD75B16F6BB1B002032FF /* PLCameraShutterButton.png */; };
 		963FD75E16F6BB1B002032FF /* PLCameraShutterButtonPressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 963FD75C16F6BB1B002032FF /* PLCameraShutterButtonPressed.png */; };
-		966FB6E316F6AE22002530E7 /* GKCameraOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 966FB6E216F6AE22002530E7 /* GKCameraOverlayView.m */; };
+		96E5500616FAA1D0005C8CF7 /* GKCameraOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 96E5500516FAA1B3005C8CF7 /* GKCameraOverlayView.m */; };
 		C147FBF61677C12F0035B373 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C147FBF51677C12F0035B373 /* Default-568h@2x.png */; };
 		C1C7B6631598429E007B2669 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C7B6621598429E007B2669 /* UIKit.framework */; };
 		C1C7B6651598429E007B2669 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C7B6641598429E007B2669 /* Foundation.framework */; };
@@ -44,8 +44,8 @@
 		963FD75816F6BA10002032FF /* PLCameraShutterButtonPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PLCameraShutterButtonPressed@2x.png"; path = "GKImages/PLCameraShutterButtonPressed@2x.png"; sourceTree = SOURCE_ROOT; };
 		963FD75B16F6BB1B002032FF /* PLCameraShutterButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PLCameraShutterButton.png; path = GKImages/PLCameraShutterButton.png; sourceTree = SOURCE_ROOT; };
 		963FD75C16F6BB1B002032FF /* PLCameraShutterButtonPressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PLCameraShutterButtonPressed.png; path = GKImages/PLCameraShutterButtonPressed.png; sourceTree = SOURCE_ROOT; };
-		966FB6E116F6AE22002530E7 /* GKCameraOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKCameraOverlayView.h; sourceTree = "<group>"; };
-		966FB6E216F6AE22002530E7 /* GKCameraOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKCameraOverlayView.m; sourceTree = "<group>"; };
+		96E5500416FAA1B3005C8CF7 /* GKCameraOverlayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GKCameraOverlayView.h; path = GKClasses/GKCameraOverlayView.h; sourceTree = SOURCE_ROOT; };
+		96E5500516FAA1B3005C8CF7 /* GKCameraOverlayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = GKCameraOverlayView.m; path = GKClasses/GKCameraOverlayView.m; sourceTree = SOURCE_ROOT; };
 		C147FBF51677C12F0035B373 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		C1C7B65E1598429E007B2669 /* GKImagePicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GKImagePicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1C7B6621598429E007B2669 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -169,8 +169,8 @@
 				D696F4F916111C28007802E6 /* GKCropBorderView.m */,
 				D6862A9016111C68005A5C5C /* GKResizeableCropOverlayView.h */,
 				D6862A9116111C68005A5C5C /* GKResizeableCropOverlayView.m */,
-				966FB6E116F6AE22002530E7 /* GKCameraOverlayView.h */,
-				966FB6E216F6AE22002530E7 /* GKCameraOverlayView.m */,
+				96E5500416FAA1B3005C8CF7 /* GKCameraOverlayView.h */,
+				96E5500516FAA1B3005C8CF7 /* GKCameraOverlayView.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -281,7 +281,7 @@
 				C1C7B6731598429E007B2669 /* AppDelegate.m in Sources */,
 				D696F4FA16111C28007802E6 /* GKCropBorderView.m in Sources */,
 				D6862A9216111C68005A5C5C /* GKResizeableCropOverlayView.m in Sources */,
-				966FB6E316F6AE22002530E7 /* GKCameraOverlayView.m in Sources */,
+				96E5500616FAA1D0005C8CF7 /* GKCameraOverlayView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

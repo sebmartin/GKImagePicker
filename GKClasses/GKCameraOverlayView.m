@@ -19,9 +19,20 @@
         // Toolbar
         NSInteger barHeight = 44;
         CGRect toolbarFrame = CGRectMake(0, frame.size.height - barHeight, frame.size.width, barHeight);
-        UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:toolbarFrame];
-        toolbar.barStyle = UIBarStyleBlackTranslucent;
-        [self addSubview:toolbar];
+        self.toolbar = [[UIToolbar alloc] initWithFrame:toolbarFrame];
+        self.toolbar.barStyle = UIBarStyleBlackTranslucent;
+        [self addSubview:self.toolbar];
+        
+        // Toolbar items
+        self.cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:nil action:nil];
+        NSMutableArray *items = [NSMutableArray arrayWithObjects:self.cancelButton, nil];
+        if ([UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront]) {
+            // Add camera toggle button if device has a front facing camera
+            UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+            self.toggleCameraButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+            [items addObjectsFromArray:@[flexItem, self.toggleCameraButton]];
+        }
+        [self.toolbar setItems:items animated:NO];
         
         // Shutter button
         CGRect buttonFrame;
@@ -31,6 +42,7 @@
         [self.shutterButton setImage:[UIImage imageNamed:@"PLCameraShutterButton"] forState:UIControlStateNormal];
         [self.shutterButton setImage:[UIImage imageNamed:@"PLCameraShutterButtonPressed"] forState:UIControlStateHighlighted];
         [self addSubview:self.shutterButton];
+
     }
     return self;
 }
